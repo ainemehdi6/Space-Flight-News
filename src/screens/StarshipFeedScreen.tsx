@@ -1,48 +1,56 @@
 import React from "react";
 import { SafeAreaView, StyleSheet, FlatList, StatusBar, View, ActivityIndicator } from "react-native";
-import { Avatar, Button, Card, Text } from 'react-native-paper';
-import { default as data } from "../../api/data.json";
-export const StarshipFeedScreen = () => {
+import { Button, Card, Text } from 'react-native-paper';
+import { useImage } from "./hooks/imagehook";
+import { useStarships } from "./hooks/useStarships";
 
-    interface ItemProps{
-        name:string;
-        model:string;
-        crew: number;
-        hyperdrive_rating: number;
-        cost_in_credits: number;
-    }
 
-    const Item  = ({name,model,crew,hyperdrive_rating,cost_in_credits} : ItemProps) => {
-        const imgLink = name.replace(' ', '').toLowerCase();
-        const coverImage = `https://picsum.photos/200/300`;
+export const StarshipFeedScreen = () => { 
+    const StarshipRenderer  = ({ item } : any) => {
+        const imgLink = useImage;
         return(
         <Card style={styles.card}>
-          <Card.Cover source={{uri : coverImage}} />
+          <Card.Cover source={{ uri: 'https://picsum.photos/700' }} />
           <Card.Content>
-            <Text style={styles.title}>{name}</Text>
-            <Text style={styles.body}>Model : {model}</Text>
-            <Text style={styles.body}>Crew : {crew}</Text>
-            <Text style={styles.body}>Hyperdrive Rating : {hyperdrive_rating}</Text>
-            <Text style={styles.body}>Cost_in_credits : {cost_in_credits}</Text>
+            <Text style={styles.title}>{item.name}</Text>
+            <Text style={styles.body}>Model : {item.model}</Text>
+            <Text style={styles.body}>Crew : {item.crew}</Text>
+            <Text style={styles.body}>Hyperdrive Rating : {item.hyperdrive_rating}</Text>
+            <Text style={styles.body}>Cost_in_credits : {item.cost_in_credits}</Text>
           </Card.Content>
+          <Card.Actions style={styles.button}>
+            <Button >Buy Starship</Button>
+          </Card.Actions>
         </Card>
         );
     }
 
-    const renderItem = ({item} : any)=>(
-        <Item name={item.name} model={item.model} crew={item.crew} hyperdrive_rating={item.hyperdrive_rating} cost_in_credits={item.cost_in_credits}/>
-    );
+    const StarshipList = () => {
+      const { data, status, error } = useStarships();
+    
+      if (status === "loading") {
+        return <Text>Loading starships...</Text>;
+      }
+    
+      if (error) {
+        return <Text>An error occured while loading starships</Text>;
+      }
+    
+      return (
+        <FlatList
+          data={data.results}
+          renderItem={StarshipRenderer}
+          keyExtractor={item => item.name}
+        />
+      );
+    };
 
     return (
-        <SafeAreaView style={styles.safeContainer}>
+      <SafeAreaView style={styles.safeContainer}>
         <View style={styles.container}>
-            <FlatList
-            data={data.results}
-            renderItem={renderItem}
-            // keyExtractor={(item) => item.id}
-            />
+          {StarshipList()}
         </View>
-        </SafeAreaView>
+      </SafeAreaView>
     );
 };
 
@@ -74,5 +82,8 @@ const styles = StyleSheet.create({
   body: {
     color: 'black',
     fontSize: 16,
+  },
+  button: {
+    margin: 'auto',
   },
 });
