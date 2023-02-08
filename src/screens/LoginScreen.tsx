@@ -14,7 +14,7 @@ export const LoginScreen = ({ Navigation }: any) => {
 
 
   return (
-    <React.Fragment>
+    <View style={styles.view}>
       <Text variant="headlineLarge" style={styles.paragraph}>Login Form</Text>
 
       <TextInput
@@ -43,7 +43,7 @@ export const LoginScreen = ({ Navigation }: any) => {
       <Button mode="contained" onPress={() => Navigation.navigate("Articles")}>
         Login
       </Button>
-    </React.Fragment>
+    </View>
 
 
   );
@@ -51,6 +51,12 @@ export const LoginScreen = ({ Navigation }: any) => {
 }
 
 const styles = StyleSheet.create({
+  view: {
+    backgroundColor: 'red',
+    flex: 1,
+    margin: 20,
+    padding: 20,
+  },
   inputView: {
     margin: 20,
     flex: 1,

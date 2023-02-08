@@ -1,5 +1,5 @@
 import React from "react";
-import { SafeAreaView, StyleSheet, FlatList, StatusBar, View, Image, ActivityIndicator } from "react-native";
+import { SafeAreaView, StyleSheet, FlatList, StatusBar, View, Image, } from "react-native";
 import { Button, Card, Text } from 'react-native-paper';
 import { useArticleDetails } from "./hooks/useArticleDetails";
 
