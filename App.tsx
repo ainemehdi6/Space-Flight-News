@@ -8,10 +8,13 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 const queryClient = new QueryClient()
 export default function App() {
-  <QueryClientProvider client={queryClient}>
-    <SafeAreaProvider>
-      <Navigator />
-    </SafeAreaProvider>
-  </QueryClientProvider>
+  return (
+    <QueryClientProvider client={queryClient}>
+      <SafeAreaProvider>
+        <Navigator />
+      </SafeAreaProvider>
+    </QueryClientProvider>
+  )
+
 
 };

@@ -3,7 +3,7 @@ import { View, StyleSheet } from 'react-native';
 import { Text, TextInput, Button } from 'react-native-paper';
 
 
-export const LoginScreen = ({ Navigation }: any) => {
+export const LoginScreen = ({ navigation }: any) => {
   const [text, setText,] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [isVisble, setIsVisible] = React.useState(true);
@@ -40,7 +40,7 @@ export const LoginScreen = ({ Navigation }: any) => {
         }
       />
 
-      <Button mode="contained" onPress={() => Navigation.navigate("Articles")}>
+      <Button mode="contained" onPress={() => navigation.navigate("Articles")}>
         Login
       </Button>
     </View>
@@ -52,9 +52,8 @@ export const LoginScreen = ({ Navigation }: any) => {
 
 const styles = StyleSheet.create({
   view: {
-    backgroundColor: 'red',
+    margin: 'auto',
     flex: 1,
-    margin: 20,
     padding: 20,
   },
   inputView: {

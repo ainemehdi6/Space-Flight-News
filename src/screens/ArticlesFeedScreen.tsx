@@ -4,10 +4,12 @@ import { Button, Card, Text } from 'react-native-paper';
 import { useArticle } from "./hooks/useArticles";
 
 
-export const ArticlesScreen = ({ Navigation }: any) => {
+export const ArticlesScreen = ({ navigation }: any) => {
   const ArticleRenderer = ({ item }: any) => {
     const imgLink = item.imageUrl;
-    console.log(item);
+    const newsSite = item.newsSite
+    const ArticleTitle = item.title;
+    const ArticleDescription = item.summary;
     return (
       <Card style={styles.card}>
         <Card.Cover source={{ uri: imgLink }} />
@@ -16,7 +18,7 @@ export const ArticlesScreen = ({ Navigation }: any) => {
           <Text style={styles.body}>News Site : {item.newsSite}</Text>
         </Card.Content>
         <Card.Actions style={styles.button}>
-          <Button onPress={() => Navigation.navigate("Article")}>Read More</Button>
+          <Button onPress={() => navigation.navigate("Article", { imgLink: imgLink, ArticleTitle: ArticleTitle, newsSite: newsSite, ArticleDescription: ArticleDescription })}>Read More</Button>
         </Card.Actions>
       </Card>
     );
@@ -55,7 +57,6 @@ const styles = StyleSheet.create({
   safeContainer: {
     flex: 1,
     marginTop: StatusBar.currentHeight || 0,
-    backgroundColor: 'grey',
   },
   container: {
     paddingHorizontal: 20,
@@ -68,7 +69,8 @@ const styles = StyleSheet.create({
     borderRadius: 20,
   },
   card: {
-    marginBottom: 20,
+    margin: 'auto',
+    backgroundColor: '#FFFFFFF9',
   },
   title: {
     marginTop: 10,

@@ -1,56 +1,30 @@
 import React from "react";
 import { SafeAreaView, StyleSheet, FlatList, StatusBar, View, Image, } from "react-native";
 import { Button, Card, Text } from 'react-native-paper';
-import { useArticleDetails } from "./hooks/useArticleDetails";
 
 
-export const ArticleDetailsScreen = () => {
-  const ArticleRenderer = ({ item }: any) => {
-    const imgLink = item.imageUrl;
-    console.log(item);
-    return (
-      <React.Fragment>
-        <Image source={{ uri: imgLink }} />
-        < Text style={styles.title} > {item.title}</Text>
-        <Text style={styles.body}>News Site : {item.newsSite}</Text>
-      </React.Fragment>
-    )
-  }
-
-  const ArticleList = () => {
-    const { data, status, error } = useArticleDetails();
-
-    if (status === "loading") {
-      return <Text>Loading Article Details...</Text>;
-    }
-
-    if (error) {
-      return <Text>An error occured while loading Article Details</Text>;
-    }
-
-    return (
-      <FlatList
-        data={data}
-        renderItem={ArticleRenderer}
-        keyExtractor={item => item.id}
-      />
-    );
-  };
-
+export const ArticleDetailsScreen = ({ route }: any) => {
+  const { imgLink, ArticleTitle, newsSite, ArticleDescription } = route.params;
   return (
-    <SafeAreaView style={styles.safeContainer}>
-      <View style={styles.container}>
-        <ArticleList />
-      </View>
-    </SafeAreaView>
-  );
-};
+    <Card style={styles.card}>
+      <Card.Cover source={{ uri: imgLink }} />
+      <Card.Content>
+        <Text style={styles.title}>{JSON.stringify(ArticleTitle)}</Text>
+        <Text style={styles.body}>News Site : {JSON.stringify(newsSite)}</Text>
+        <Text style={styles.body}>{JSON.stringify(ArticleDescription)}</Text>
+      </Card.Content>
+    </Card>
+  )
+}
 
 const styles = StyleSheet.create({
   safeContainer: {
     flex: 1,
     marginTop: StatusBar.currentHeight || 0,
-    backgroundColor: 'grey',
+  },
+  card: {
+    marginBottom: 20,
+    backgroundColor: '#FFFFFFF9',
   },
   container: {
     paddingHorizontal: 20,
@@ -59,11 +33,17 @@ const styles = StyleSheet.create({
   block: {
     padding: 20,
     margin: 10,
-    backgroundColor: 'white',
+    backgroundColor: 'red',
     borderRadius: 20,
   },
   view: {
     padding: 10,
+    margin: 'auto',
+    maxWidth: '100',
+    backgroundColor: 'white',
+  },
+  image: {
+
   },
   title: {
     marginTop: 10,

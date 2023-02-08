@@ -1,9 +1,9 @@
-import { createStackNavigator } from '@react-navigation/stack';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { LoginScreen } from '../screens/LoginScreen';
 import { ArticlesScreen } from '../screens/ArticlesFeedScreen';
 import { ArticleDetailsScreen } from '../screens/ArticleDetailsScreen';
 import { NavigationContainer } from '@react-navigation/native';
-const Stack = createStackNavigator();
+const Stack = createNativeStackNavigator();
 
 function Navigator() {
     return (
@@ -18,6 +18,11 @@ function Navigator() {
                     name="Articles"
                     component={ArticlesScreen}
                     options={{ title: 'Articles' }}
+                />
+                <Stack.Screen
+                    name="Article"
+                    component={ArticleDetailsScreen}
+                    options={{ title: 'Article Details' }}
                 />
             </Stack.Navigator>
         </NavigationContainer>
