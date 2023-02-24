@@ -22,13 +22,11 @@ export const ScreenContainer = ({
       <Text variant="headlineMedium" style={styles.headerText}>
         {title}
       </Text>
-
       {children}
       {withFooter && <View style={styles.footer} />}
     </ScrollView>
   );
 };
-
 const styles = StyleSheet.create({
   container: {
     paddingTop: 24,

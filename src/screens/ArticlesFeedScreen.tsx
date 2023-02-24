@@ -14,8 +14,8 @@ export const ArticlesScreen = ({ navigation }: any) => {
       <Card style={styles.card}>
         <Card.Cover source={{ uri: imgLink }} />
         <Card.Content>
-          <Text style={styles.title}>{item.title}</Text>
-          <Text style={styles.body}>News Site : {item.newsSite}</Text>
+          <Text style={styles.title}>{ArticleTitle}</Text>
+          <Text style={styles.body}>News Site : {newsSite}</Text>
         </Card.Content>
         <Card.Actions style={styles.button}>
           <Button onPress={() => navigation.navigate("Article", { imgLink: imgLink, ArticleTitle: ArticleTitle, newsSite: newsSite, ArticleDescription: ArticleDescription })}>Read More</Button>
@@ -56,7 +56,7 @@ export const ArticlesScreen = ({ navigation }: any) => {
 const styles = StyleSheet.create({
   safeContainer: {
     flex: 1,
-    marginTop: StatusBar.currentHeight || 0,
+    marginTop: 10,
   },
   container: {
     paddingHorizontal: 20,
@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
     borderRadius: 20,
   },
   card: {
-    margin: 'auto',
+    marginBottom: 20,
     backgroundColor: '#FFFFFFF9',
   },
   title: {

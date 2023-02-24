@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, Image, StyleSheet } from 'react-native';
 import { Text, TextInput, Button } from 'react-native-paper';
 
 
@@ -15,8 +15,7 @@ export const LoginScreen = ({ navigation }: any) => {
 
   return (
     <View style={styles.view}>
-      <Text variant="headlineLarge" style={styles.paragraph}>Login Form</Text>
-
+      <Image style={styles.Logo} source={require('../../assets/logo.jpg')} />
       <TextInput
         style={styles.TextInput}
         label="Email"
@@ -39,7 +38,6 @@ export const LoginScreen = ({ navigation }: any) => {
           />
         }
       />
-
       <Button mode="contained" onPress={() => navigation.navigate("Articles")}>
         Login
       </Button>
@@ -49,12 +47,17 @@ export const LoginScreen = ({ navigation }: any) => {
   );
 
 }
-
 const styles = StyleSheet.create({
   view: {
     margin: 'auto',
     flex: 1,
     padding: 20,
+    backgroundColor: '#e4e4e4'
+  },
+  Logo: {
+    width: 200,
+    height: 200,
+    margin: 'auto',
   },
   inputView: {
     margin: 20,
