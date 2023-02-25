@@ -7,8 +7,8 @@
 <p dir="auto"></p>
 <p dir="auto">Features:</p>
 <ul dir="auto">
-<li>Get list of ghibli movies</li>
-<li>Details of these films</li>
+<li>Get list of Space flight News</li>
+<li>Details of these News</li>
 </ul>
 <p dir="auto">Preview :</p>
 <p dir="auto"><a target="_blank" rel="noopener noreferrer" href="https://github.com/ainemehdi6/Space-Flight-News/blob/master/app.gif"><img src="https://github.com/ainemehdi6/Space-Flight-News/blob/master/app.gif" width="230" data-animated-image="" style="max-width: 100%;"></a></p>
